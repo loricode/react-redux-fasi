@@ -3,14 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { combineReducers, createStore } from 'redux';
-import { Provider } from 'react-redux';
+
+import { combineReducers, createStore } from 'redux'; //npm i redux
+import { Provider } from 'react-redux'; //npm i react-redux
 
 import { productReducer } from './app/store/reducers/product/productReducer';
 
 const reducers = combineReducers({
   productReducer
-})
+});
 
 const store = createStore(reducers); 
 

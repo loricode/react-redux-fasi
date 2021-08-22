@@ -4,6 +4,3 @@ export interface Action{
    type:string,
    payload: Product | Products[] | number
 }
-
-
-

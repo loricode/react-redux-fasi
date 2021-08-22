@@ -1,14 +1,28 @@
-import { useSelector, shallowEqual } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector, shallowEqual, useDispatch } from 'react-redux';
 import { CardProduct } from './app/components/cards/CardProduct';
 import { Products } from './app/interfaces/product/product.interface';
+import { ADD_PRODUCTS } from './app/store/actions/product/product.action';
 
 import { ModalProduct } from './app/components/modals/product/ModalProduct';
+
+import { ProductRepository } from './app/services/repositories/product/repostory.product';
 
 interface productStore {
   productReducer: any
 }
 
 function App() {
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+   (async function() {
+    const  { data }  = await ProductRepository.getProduct(); 
+    dispatch({ type:ADD_PRODUCTS, payload:data.body })
+   })();
+   
+  },[dispatch])
 
   const result: Products = useSelector((store: productStore) => store.productReducer, shallowEqual)
 

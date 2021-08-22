@@ -19,13 +19,13 @@ export function CardProduct({ product, index }:Props){
          </div>
 
          <div className="card-body">
-            <p>{product.price}</p>
-           <h4> { product.description} </h4>         
+            <p>{ product.price }</p>
+           <h4>{ product.description }</h4>         
          </div> 
          <div className="card-footer">
             <button 
              className="btn btn-danger"
-             onClick={()=> dispatch({type:DELETE_PRODUCT, payload:index})}
+             onClick={() => dispatch({type:DELETE_PRODUCT, payload:index})}
             >
              Delete
             </button>

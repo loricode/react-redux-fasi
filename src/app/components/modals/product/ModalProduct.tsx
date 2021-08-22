@@ -1,7 +1,6 @@
 import { ChangeEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { CardModal } from "../../cards/CardModal";
-import { Product } from "../../../interfaces/product/product.interface";
 
 import { ADD_PRODUCT } from '../../../store/actions/product/product.action';
 
@@ -13,8 +12,7 @@ export function ModalProduct(props: Props) {
 
    const dispatch = useDispatch()
 
-   const [ stateForm, setStateForm ] = useState<Product>({
-      id:'',
+   const [ stateForm, setStateForm ] = useState({
       name:'',
       price:0,
       description:'',    
@@ -29,22 +27,14 @@ export function ModalProduct(props: Props) {
 
    const handleSubmit = (e:ChangeEvent<HTMLFormElement>) => {
      e.preventDefault()
-     dispatch({  type:ADD_PRODUCT,  payload:stateForm })
+     dispatch({ type:ADD_PRODUCT,  payload:stateForm })
    }
 
-   
    return (
       <CardModal id={props.id}>
-         <form
-          onSubmit={handleSubmit}
-          >
-            <div className="row">
-            <input 
-                 name="id"
-                 className="form-control mb-2"
-                 onChange={handleChange}
-                 placeholder="Id" />
+         <form onSubmit={handleSubmit} >
 
+            <div className="row">
                <input 
                  name="name"
                  className="form-control mb-2"
@@ -69,14 +59,15 @@ export function ModalProduct(props: Props) {
                  onChange={handleChange}
                  placeholder="Description" />
             </div>
+            
             <div className="modal-footer">
-                  <button 
-                    type="button"    
-                    className="btn btn-secondary"
-                    data-bs-dismiss="modal">Close</button>
-                  <button    
-                   type="submit"
-                   className="btn btn-primary">Save</button>
+               <button 
+                  type="button"    
+                  className="btn btn-secondary"
+                  data-bs-dismiss="modal">Close</button>
+               <button    
+                  type="submit"
+                  className="btn btn-primary">Save</button>
            </div>
          </form>
       </CardModal>
